@@ -34,8 +34,10 @@ plt.show()
 q1 = data['age'].quantile(0.25)
 q3 = data['age'].quantile(0.75)
 iqr = q3 - q1
-outlier_threshold = q3 + 1.5 * iqr
-data = data[data['age'] <= outlier_threshold]
+outlier_threshold_up = q3 + 1.5 * iqr
+outlier_threshold_down = q1 - 1.5 * iqr
+data = data[data['age'] <= outlier_threshold_up]
+data = data[data['age'] >= outlier_threshold_down]
 
 # Print the cleaned data
 print(data)
